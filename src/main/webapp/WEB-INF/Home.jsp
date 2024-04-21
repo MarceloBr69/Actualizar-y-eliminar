@@ -10,18 +10,37 @@
 	</head>
 	<body>
 		<h1>Libros:</h1>
+		
 		<ul>
+			
 			<c:forEach var="Libro" items="${libros}"><!-- libros es proveniente del nombre de la tabla -->
-			<li>
-				id: <c:out value="${Libro.id}" /><br>
-				Titulo: <c:out value="${Libro.titulo}"></c:out><br>
-				Descripcion: <c:out value="${Libro.descripcion}"></c:out><br>
-				Lenguaje: <c:out value="${Libro.lenguaje}"></c:out><br>
-				Numeros de pagina: <c:out value="${Libro.numerosDePaginas}"></c:out><br>
-				<form:form action="/libro/editar/${Libro.id}" method="GET">
-					<button>Modificar</button>
-				</form:form>
-			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<c:forEach var="Libro" items="${libros}">
+    				<form:form action="/libro/${Libro.id}" method="POST">
+        				<button type="submit"><c:out value="${Libro.titulo}"/></button>
+   					</form:form>
+				</c:forEach>
+
+				
+				
+				
+				
+				
+				<form:form action="/borrar/{id}" method="POST" modelAttribute="LibrosModelo">
+		    		<button>Eliminar</button>
+		    	</form:form>
+		    	
+		    	
+		    	
+			
 			</c:forEach>
 		</ul>
 		<div>
@@ -36,7 +55,7 @@
 				<form:label for="lenguaje" path="lenguaje">Lenguaje: </form:label>
 				<form:input path="lenguaje" type="text" />
 				
-				<form:label for="numerosDePaginas" path="numerosDePaginas">Lenguaje: </form:label>
+				<form:label for="numerosDePaginas" path="numerosDePaginas">Paginas: </form:label>
 				<form:input path="numerosDePaginas" type="text" />
 				
 				<button>Enviar</button>
