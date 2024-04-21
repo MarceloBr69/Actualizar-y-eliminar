@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.codingdojo.libros.modelos.LibrosModelo;
 import com.codingdojo.libros.servicios.LibrosServicios;
@@ -79,12 +79,6 @@ public class LibrosApi{
 	
 	
 	
-	
-	
-	
-	
-	
-	
 	//Mostrar informacion de libro
 	@PostMapping("/libro/{id}")
 	public String infoLibro(@PathVariable("id") Long id, Model model) {
@@ -93,13 +87,15 @@ public class LibrosApi{
 	    return "info.jsp"; 
 	}
 	
-	//Borrar libro mediante boton
-	@PostMapping("/borrar/libro/{id}")
-    public String borrarLibro(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
-		librosServicios.eliminarLibro(id);
-        redirectAttributes.addFlashAttribute("mensaje", "Libro eliminado correctamente");
-        return "redirect:/lista-libros"; // Redirige a la página de lista de libros después de eliminar
-    }
+	
+	//Eliminar informacion
+	@DeleteMapping("/libro/borrar/{id}")
+	public String eliminar(@PathVariable("id") Long id) {
+		librosServicios.eliminarLibro(id);	
+		return "redirect:/"; 
+	}
+	
+	
 
 	
 	

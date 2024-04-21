@@ -17,10 +17,11 @@
     
     <form:form action="/libro/editar/${libroid.id}" method="GET">
 		<button>Modificar</button>
-	</form:form>
-	    <form:form action="/borrar/libro/${libroid.id}" method="POST">
-	        <button type="submit">Eliminar</button>
-	    </form:form>
+	</form:form>
+	<form action="/libro/borrar/${libroid.id}" method="POST">
+		<input type="hidden" name="_method" value="delete">
+		<input type="submit" value="Delete">
+	</form>
 
 
 	
